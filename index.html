@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ResearchGap | PhD Thesis & SPSS Analysis Experts</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0c;
+    --cream: #f7f3ed;
+    --gold: #c9a84c;
+    --gold-light: #e8d5a3;
+    --rust: #8b3a2a;
+    --sage: #4a6741;
+    --paper: #faf8f4;
+    --muted: #6b6560;
+    --border: #e0d8ce;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5%;
+    background: rgba(247,243,237,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--ink);
+    letter-spacing: -0.5px;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  nav ul {
+    display: flex; gap: 2rem; list-style: none;
+  }
+
+  nav ul a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  nav ul a:hover { color: var(--ink); }
+
+  .nav-cta {
+    background: var(--ink);
+    color: var(--cream) !important;
+    padding: 0.55rem 1.3rem;
+    border-radius: 2px;
+    font-weight: 600 !important;
+    color: var(--cream);
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--gold) !important; color: var(--ink) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 5% 4rem;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--gold-light);
+    color: var(--ink);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 1.5rem;
+    color: var(--ink);
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero p {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0.9rem 2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.25s;
+    letter-spacing: 0.02em;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold);
+    color: var(--ink);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(201,168,76,0.3);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: transparent;
+    color: var(--ink);
+    padding: 0.9rem 2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 2px;
+    border: 1.5px solid var(--border);
+    transition: all 0.25s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--ink);
+    transform: translateY(-2px);
+  }
+
+  /* Hero right — decorative card */
+  .hero-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    max-width: 380px;
+    width: 100%;
+    position: relative;
+    animation: floatCard 4s ease-in-out infinite;
+  }
+
+  @keyframes floatCard {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 2rem; right: 2rem;
+    height: 3px;
+    background: var(--gold);
+    border-radius: 0 0 2px 2px;
+  }
+
+  .card-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+  }
+
+  .card-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .card-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .step-num {
+    width: 24px; height: 24px;
+    background: var(--gold);
+    color: var(--ink);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-text {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .step-text strong {
+    color: var(--ink);
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .card-footer {
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.8rem;
+    color: var(--sage);
+    font-weight: 600;
+  }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 1.5rem 5%;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+  }
+
+  .trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+  }
+
+  .trust-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--gold);
+  }
+
+  .trust-label {
+    font-size: 0.75rem;
+    color: rgba(247,243,237,0.6);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 6rem 5%; }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 520px;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--cream); }
+
+  .services-header {
+    margin-bottom: 3.5rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .service-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+    border-color: var(--gold);
+  }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .service-icon {
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.8rem;
+  }
+
+  .service-card p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .service-list li {
+    font-size: 0.85rem;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .service-list li::before {
+    content: '→';
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  /* ── HOW IT WORKS ── */
+  #process { background: var(--paper); }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+    position: relative;
+  }
+
+  .process-grid::before {
+    content: '';
+    position: absolute;
+    top: 2rem; left: 10%; right: 10%;
+    height: 1px;
+    background: var(--border);
+    z-index: 0;
+  }
+
+  .process-step {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    padding: 1rem;
+  }
+
+  .process-num {
+    width: 56px; height: 56px;
+    background: white;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--gold);
+    margin: 0 auto 1.2rem;
+  }
+
+  .process-step h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .process-step p {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── WHY US ── */
+  #why { background: var(--ink); color: var(--cream); }
+
+  #why .section-title { color: var(--cream); }
+  #why .section-sub { color: rgba(247,243,237,0.6); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3.5rem;
+  }
+
+  .why-card {
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    padding: 2rem;
+    transition: all 0.3s;
+  }
+
+  .why-card:hover {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.05);
+  }
+
+  .why-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .why-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.6rem;
+  }
+
+  .why-card p {
+    font-size: 0.85rem;
+    color: rgba(247,243,237,0.55);
+    line-height: 1.7;
+  }
+
+  /* ── FAQ ── */
+  #faq { background: var(--cream); }
+
+  .faq-list {
+    margin-top: 3rem;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 1.4rem 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .faq-q span.arrow {
+    color: var(--gold);
+    font-size: 1.2rem;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+
+  .faq-item.open .faq-q span.arrow {
+    transform: rotate(45deg);
+  }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  .faq-item.open .faq-a {
+    max-height: 300px;
+    padding-bottom: 1.4rem;
+  }
+
+  /* ── CTA BANNER ── */
+  .cta-banner {
+    background: var(--gold);
+    padding: 5rem 5%;
+    text-align: center;
+  }
+
+  .cta-banner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 900;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+  }
+
+  .cta-banner p {
+    font-size: 1rem;
+    color: rgba(15,14,12,0.7);
+    margin-bottom: 2rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btn-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 1rem 2.2rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.25s;
+    letter-spacing: 0.02em;
+  }
+
+  .btn-dark:hover {
+    background: white;
+    color: var(--ink);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0a0908;
+    color: rgba(247,243,237,0.5);
+    padding: 2rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--cream);
+  }
+
+  .footer-logo span { color: var(--gold); }
+
+  footer p { font-size: 0.8rem; }
+
+  footer a {
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.8rem;
+  }
+
+  /* ── WHATSAPP FLOAT ── */
+  .wa-float {
+    position: fixed;
+    bottom: 2rem; right: 2rem;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+  }
+
+  .wa-float a {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: #25D366;
+    color: white;
+    padding: 0.9rem 1.4rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    transition: all 0.25s;
+    white-space: nowrap;
+  }
+
+  .wa-float a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(37,211,102,0.5);
+  }
+
+  .wa-float svg {
+    width: 20px; height: 20px;
+    fill: white;
+    flex-shrink: 0;
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; text-align: center; }
+    .hero p { margin-left: auto; margin-right: auto; }
+    .hero-actions { justify-content: center; }
+    .hero-visual { display: none; }
+    .services-grid { grid-template-columns: 1fr; }
+    .process-grid { grid-template-columns: 1fr 1fr; }
+    .process-grid::before { display: none; }
+    .why-grid { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+    .trust-bar { gap: 2rem; }
+  }
+
+  @media (max-width: 500px) {
+    .process-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Research<span>Gap</span></div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="https://wa.me/919589735371?text=Hello%20ResearchGap%2C%20I%20need%20help%20with%20my%20PhD%20thesis." class="nav-cta">Free Consultation</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge">PhD Research Specialists</div>
+    <h1>Your Research.<br><em>Our Expertise.</em><br>Your Degree.</h1>
+    <p>Struggling with your PhD thesis or SPSS data analysis? ResearchGap bridges the gap between your research vision and a submission-ready dissertation.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/919589735371?text=Hello%20ResearchGap%2C%20I%20need%20help%20with%20my%20PhD%20thesis." class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Free Consultation
+      </a>
+      <a href="#services" class="btn-secondary">View Services →</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="card-label">How ResearchGap Works</div>
+      <div class="card-title">From Raw Idea to Submitted Thesis</div>
+      <div class="card-steps">
+        <div class="card-step">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <strong>Free WhatsApp Consultation</strong>
+            Share your topic, university, and requirements
+          </div>
+        </div>
+        <div class="card-step">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <strong>Custom Research Plan</strong>
+            We map out your thesis structure and timeline
+          </div>
+        </div>
+        <div class="card-step">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <strong>Expert Writing & Analysis</strong>
+            PhD-level writing + SPSS data analysis done right
+          </div>
+        </div>
+        <div class="card-step">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <strong>Revisions & Delivery</strong>
+            Submission-ready with full support until approval
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        ✓ Confidential &nbsp;·&nbsp; ✓ Plagiarism-Free &nbsp;·&nbsp; ✓ On-Time
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <div class="trust-num">50+</div>
+    <div class="trust-label">Theses Completed</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-num">100%</div>
+    <div class="trust-label">Confidential</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-num">15+</div>
+    <div class="trust-label">Disciplines Covered</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-num">24hr</div>
+    <div class="trust-label">Response Time</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header fade-up">
+    <div class="section-tag">What We Do</div>
+    <h2 class="section-title">Expert Research Services<br>Built for PhD Scholars</h2>
+    <p class="section-sub">Whether you need a complete thesis from scratch or precise data analysis, ResearchGap delivers research that meets university standards.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-icon">📄</div>
+      <h3>PhD Thesis Writing</h3>
+      <p>Survey-based thesis writing from scratch — structured, well-referenced, and tailored to your university's format and evaluation criteria.</p>
+      <ul class="service-list">
+        <li>Topic selection & research gap identification</li>
+        <li>Literature review & theoretical framework</li>
+        <li>Survey design & questionnaire creation</li>
+        <li>Complete chapter-wise writing</li>
+        <li>APA / MLA / University format compliance</li>
+        <li>Plagiarism-free with Turnitin-safe content</li>
+      </ul>
+    </div>
+
+    <div class="service-card fade-up">
+      <div class="service-icon">📊</div>
+      <h3>SPSS Data Analysis</h3>
+      <p>Accurate statistical analysis of your survey data using SPSS — with interpretation, result writing, and visualization ready for your thesis.</p>
+      <ul class="service-list">
+        <li>Descriptive & inferential statistics</li>
+        <li>Regression, ANOVA, correlation analysis</li>
+        <li>Factor analysis & reliability testing</li>
+        <li>Hypothesis testing & result interpretation</li>
+        <li>Charts, tables & figure formatting</li>
+        <li>Chapter 4 result writing included</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="fade-up">
+    <div class="section-tag">Our Process</div>
+    <h2 class="section-title">Simple. Transparent. Reliable.</h2>
+    <p class="section-sub">We keep things straightforward — no complicated forms, no confusing steps. Just WhatsApp us and we take it from there.</p>
+  </div>
+
+  <div class="process-grid">
+    <div class="process-step fade-up">
+      <div class="process-num">1</div>
+      <h4>WhatsApp Us</h4>
+      <p>Share your topic, discipline, university name, and deadline. No commitments yet.</p>
+    </div>
+    <div class="process-step fade-up">
+      <div class="process-num">2</div>
+      <h4>Free Consultation</h4>
+      <p>We understand your requirements and give you a clear scope of work and timeline.</p>
+    </div>
+    <div class="process-step fade-up">
+      <div class="process-num">3</div>
+      <h4>We Get to Work</h4>
+      <p>Our research experts begin writing and analysis with regular progress updates.</p>
+    </div>
+    <div class="process-step fade-up">
+      <div class="process-num">4</div>
+      <h4>Review & Deliver</h4>
+      <p>You review, we revise. Final delivery is clean, formatted, and submission-ready.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="fade-up">
+    <div class="section-tag">Why ResearchGap</div>
+    <h2 class="section-title">Not Just Writers.<br>Research Specialists.</h2>
+    <p class="section-sub">We understand what universities look for. Our work is built to pass scrutiny — from the viva voce to the plagiarism check.</p>
+  </div>
+
+  <div class="why-grid">
+    <div class="why-card fade-up">
+      <div class="why-icon">🔒</div>
+      <h4>100% Confidential</h4>
+      <p>Your identity and project details are never shared. Complete privacy guaranteed at every step of the process.</p>
+    </div>
+    <div class="why-card fade-up">
+      <div class="why-icon">🎓</div>
+      <h4>Academic Expertise</h4>
+      <p>Deep knowledge of survey-based research methodology, literature review, and SPSS across multiple disciplines.</p>
+    </div>
+    <div class="why-card fade-up">
+      <div class="why-icon">📅</div>
+      <h4>Deadline Commitment</h4>
+      <p>We take deadlines seriously. Your submission date is our delivery date — no last-minute surprises.</p>
+    </div>
+    <div class="why-card fade-up">
+      <div class="why-icon">✏️</div>
+      <h4>Unlimited Revisions</h4>
+      <p>Not satisfied? We revise until you are. Your approval matters more than the first draft.</p>
+    </div>
+    <div class="why-card fade-up">
+      <div class="why-icon">📐</div>
+      <h4>University Formatting</h4>
+      <p>Every thesis is formatted as per your university's specific guidelines — APA, MLA, or custom formats.</p>
+    </div>
+    <div class="why-card fade-up">
+      <div class="why-icon">💬</div>
+      <h4>Direct Communication</h4>
+      <p>No middlemen. You speak directly with the expert working on your thesis via WhatsApp.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="fade-up">
+    <div class="section-tag">FAQ</div>
+    <h2 class="section-title">Common Questions</h2>
+    <p class="section-sub">Things PhD scholars usually want to know before getting started.</p>
+  </div>
+
+  <div class="faq-list fade-up">
+    <div class="faq-item">
+      <button class="faq-q">How much does a PhD thesis cost? <span class="arrow">+</span></button>
+      <div class="faq-a">Pricing depends on your topic, discipline, number of chapters, and deadline. We don't believe in fixed pricing because every thesis is unique. Contact us for a free consultation and we'll give you a transparent quote based on your exact requirements.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Is this completely confidential? <span class="arrow">+</span></button>
+      <div class="faq-a">Absolutely. We never share client information with anyone. Your name, university, and project details remain strictly private. We have no reason to breach your trust — our business depends on it.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">How long does it take to complete a thesis? <span class="arrow">+</span></button>
+      <div class="faq-a">Timelines depend on the scope and number of chapters. A full thesis typically takes 4–8 weeks. SPSS analysis alone can be done in 5–10 days. Share your deadline with us and we'll tell you honestly if we can meet it before you commit.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">What disciplines do you cover? <span class="arrow">+</span></button>
+      <div class="faq-a">We specialize in survey-based research across management, commerce, social sciences, education, healthcare, HR, marketing, finance, and more. If your thesis is based on primary or secondary data collection, we can help.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Is the content plagiarism-free? <span class="arrow">+</span></button>
+      <div class="faq-a">Yes. Every thesis is written originally for your specific topic. We don't reuse content across clients. We can also provide a Turnitin or iThenticate report on request.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Do I need to provide my data for SPSS analysis? <span class="arrow">+</span></button>
+      <div class="faq-a">Yes, for SPSS analysis you share your collected survey responses (in Excel or SPSS format) along with your research objectives and hypotheses. We handle everything from data entry, coding, analysis, and result writing from there.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <h2>Ready to Bridge Your Research Gap?</h2>
+  <p>Send us a WhatsApp message right now. Free consultation, no pressure, no commitment.</p>
+  <a href="https://wa.me/919589735371?text=Hello%20ResearchGap%2C%20I%20need%20help%20with%20my%20PhD%20thesis.%20Can%20we%20discuss%3F" class="btn-dark">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Chat on WhatsApp — It's Free
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Research<span>Gap</span></div>
+  <p>© 2026 ResearchGap. All rights reserved.</p>
+  <a href="https://wa.me/919589735371">+91 95897 35371</a>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<div class="wa-float">
+  <a href="https://wa.me/919589735371?text=Hello%20ResearchGap%2C%20I%20need%20help%20with%20my%20PhD%20thesis." target="_blank">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Get Free Consultation
+  </a>
+</div>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
